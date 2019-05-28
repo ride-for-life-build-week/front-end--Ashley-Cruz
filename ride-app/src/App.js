@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import Login from './Components/Login';
+import { connect } from 'react-redux';
 import Home from './Components/Home';
-import './styles/App.css';
+
 
 class App extends React.Component{
 
@@ -18,7 +18,7 @@ class App extends React.Component{
           </div>
           <div>
             {!this.props.isLoggedIn ? (
-               <Link to="/LoginPage">Log In</Link>
+               <Link to="/Login">Log In</Link>
             ) : <Link to="/" onClick={logout}>Log Out</Link> 
             }
           </div>
