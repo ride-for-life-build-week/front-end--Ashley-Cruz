@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import Login from './Components/Login';
+import { connect } from 'react-redux';
+import Home from './Components/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component{
+
+  render(){
+    return (
+      <Router>
+      <div className="App">
+        <nav className="navigation-bar">
+          <div className="nav-links"> 
+          <NavLink exact to="/">Home</NavLink>
+    
+          </div>
+          <div>
+            {!this.props.isLoggedIn ? (
+               <Link to="/Login">Log In</Link>
+            ) : <Link to="/" onClick={logout}>Log Out</Link> 
+            }
+          </div>
+        </nav>
+
+        <Route exact path='/' component={Home} />
+        <Route path="/login" component={Login} />
+      </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+function logout() {
+  localStorage.removeItem('token')
+    window.location.reload(true);
+}
+
+const mapStateToProps = state => ({
+    isLoggedIn: state.isLoggedIn
+})
+
+export default connect(mapStateToProps, {} )(App);
+
+
+
+
