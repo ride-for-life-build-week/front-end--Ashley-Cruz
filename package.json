@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "react-axios": "^2.0.3"
+    "bootstrap": "^4.3.1",
+    "react": "^16.8.6",
+    "react-axios": "^2.0.3",
+    "react-dom": "^16.8.6",
+    "save": "^2.4.0"
   }
 }
