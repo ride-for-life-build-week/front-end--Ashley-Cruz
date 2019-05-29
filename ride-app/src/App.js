@@ -7,10 +7,6 @@ import { connect } from "react-redux";
 import { logOut } from "./Actions/LoginandSignUp";
 import Home from "./Components/Home";
 
-// const NavbarBrand = () => <h1>Welcome to Ride For Life</h1>;
-// const Nav = () => <h4>hello</h4>;
-// const NavItem = () => <p> hello world</p>;
-
 const loggedInNav = () => (
   <nav className="navigation">
     <NavbarBrand>Ride for Life</NavbarBrand>
