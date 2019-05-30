@@ -7,13 +7,13 @@ import {
   withRouter
 } from "react-router-dom";
 import { connect } from "react-redux";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import Login from "./Components/Login";
 import Home from "./Components/HomePage";
 import UserPage from "./Components/UserPage";
 import AddUserForm from "./Components/AddUserForm";
 
-import "./styles/App.css";
+import "./App.css";
 
 class App extends React.Component {
   render() {
@@ -47,8 +47,8 @@ class App extends React.Component {
 
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/user/form" component={AddUserForm} />
-          <PrivateRoute path="/user" component={UserPage} />
+          <Route path="/user/form" component={AddUserForm} />
+          <Route path="/user" component={UserPage} />
         </div>
       </Router>
     );

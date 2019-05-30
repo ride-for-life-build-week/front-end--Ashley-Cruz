@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Loader from "react-loader-spinner";
 
-import { login } from "../actions";
+import { login } from "../Actions";
 
 class Login extends React.Component {
   state = {
