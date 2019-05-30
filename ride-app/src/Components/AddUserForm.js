@@ -22,56 +22,62 @@ class AddUserForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (
-      this.state.name === "" ||
-      this.state.username === "" ||
-      this.state.email === "" ||
-      this.state.password === ""
-    )
-      return;
-    this.props.addUser(this.state);
+    // if (
+    //   localStorage.token
+    //   //   this.state.name === "" ||
+    //   //   this.state.username === "" ||
+    //   //   this.state.email === "" ||
+    //   //   this.state.password === ""
+    // ) {
+    this.props.addUser(this.state).then(() => this.props.history.push("/"));
+    // } else {
+    // }
+
     this.setState({ name: "", email: "", username: "", password: "" });
-    window.location.pathname = "/user";
   };
 
   cancelForm = e => {
     e.preventDefault();
-    window.location.pathname = "/user";
+    this.props.history.push("/");
   };
 
   render() {
     return (
       <div className="user-form">
-        <button className="cancel-btn" onClick={this.cancelForm}>
+        <button link="/home" className="cancel-btn" onClick={this.cancelForm}>
           X
         </button>
         <form onSubmit={this.handleSubmit}>
-          <h2>Add a new User</h2>
+          <h2>Create a new Account</h2>
           <input
+            type="text"
             placeholder="name"
             name="name"
             value={this.state.name}
             onChange={this.handleInput}
           />
           <input
+            type="text"
             placeholder="username"
             name="username"
             value={this.state.username}
             onChange={this.handleInput}
           />
           <input
+            type="text"
             placeholder="email"
             name="email"
             value={this.state.email}
             onChange={this.handleInput}
           />
           <input
+            type="text"
             placeholder="password"
             name="password"
             value={this.state.password}
             onChange={this.handleInput}
           />
-          <button className="add-user-btn">+</button>
+          <button className="add-user-btn">Register</button>
         </form>
       </div>
     );

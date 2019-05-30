@@ -25,14 +25,10 @@ class App extends React.Component {
               <NavLink exact to="/">
                 Home
               </NavLink>
-              {this.props.isLoggedIn && (
-                <>
-                  <NavLink exact to="/user">
-                    User
-                  </NavLink>
-                  <NavLink to="/user/form">Add User</NavLink>
-                </>
-              )}
+              {this.props.isLoggedIn && <></>}
+              <div>
+                <NavLink to="/AddUserForm">Register</NavLink>
+              </div>
             </div>
             <div>
               {!this.props.isLoggedIn ? (
@@ -47,6 +43,7 @@ class App extends React.Component {
 
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/AddUserForm" component={AddUserForm} />
           <Route path="/user/form" component={AddUserForm} />
           <Route path="/user" component={UserPage} />
         </div>
