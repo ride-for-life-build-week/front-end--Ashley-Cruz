@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { login } from "../Actions/LoginandSignUp.js";
-// /Users/miguel/Lambda/week10/bw-bike/front-end--Ashley-Cruz/ride-app/src/Components/Login.js
-// /Users/miguel/Lambda/week10/bw-bike/front-end--Ashley-Cruz/ride-app/src/Actions/LoginandSignUp.js
 
-class Login extends Component {
+import Loader from "react-loader-spinner";
+
+import { login } from "../actions";
+
+class Login extends React.Component {
   state = {
     credentials: {
       username: "",
@@ -12,7 +13,7 @@ class Login extends Component {
     }
   };
 
-  handleChanges = e => {
+  handleInput = e => {
     this.setState({
       credentials: {
         ...this.state.credentials,
@@ -21,35 +22,39 @@ class Login extends Component {
     });
   };
 
-  login = e => {
+  handleClick = e => {
     e.preventDefault();
-    this.props.login(this.state.credentials);
-    this.props.history.push("/questionlist");
+    this.props.login(this.state.credentials).then(() => {
+      this.props.history.push("/user");
+    });
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
-        <form onSubmit={this.login} className="login">
+        <h2>Please Sign In</h2>
+        <form onSubmit={this.handleClick}>
           <input
-            name="username"
             type="text"
-            placeholder="username"
+            name="username"
             value={this.state.credentials.username}
-            onChange={this.handleChanges}
+            placeholder="...username"
+            onChange={this.handleInput}
           />
-          <br />
           <input
-            name="password"
             type="password"
-            placeholder="password"
+            name="password"
             value={this.state.credentials.password}
-            onChange={this.handleChanges}
+            placeholder="...password"
+            onChange={this.handleInput}
           />
-          <br />
-          {this.props.error && <p className="error">{this.props.error}</p>}
-          <button type="submit">LOG IN</button>
+          <button>
+            {this.props.isLoggingIn ? (
+              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+            ) : (
+              "Sign In"
+            )}
+          </button>
         </form>
       </div>
     );
@@ -57,9 +62,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  loggingIn: state.loggingIn,
-  error: state.error,
-  signingUp: state.signingUp
+  isLoggingIn: state.isLoggingIn
 });
 
 export default connect(
