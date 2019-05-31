@@ -105,9 +105,12 @@ class UserForm extends React.Component {
           <br />
           <button className="add-review-btn">Add Review</button>
           <button className="edit-review-btn">Edit Review</button>
+          <br />
           <button className="save-btn">Save Review</button>
           <button className="delete-review-btn">Delete Review</button>
+          <br />
           <button className="edit-btn">Edit Account</button>
+          <br />
           <button className="save-acc-btn">Save Account</button>
           <button className="delete-acc-btn">Delete Account</button>
         </form>
