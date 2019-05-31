@@ -100,8 +100,9 @@ class DriverForm extends React.Component {
             onChange={this.handleInput}
           /> */}
           <br />
-          <button className="add-user-btn">Save</button>
-          <button className="add-user-btn">Delete Account</button>
+          <button className="save-driver-btn">Save</button>
+          <button className="edit-btn">Edit Account</button>
+          <button className="delete-btn">Delete Account</button>
         </form>
       </div>
     );
