@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import axios from "axios";
 import { addUser } from "../Actions";
 import { users } from "../App.js";
 
@@ -8,11 +8,10 @@ class AddUserForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      email: "",
-      password: "",
-      userType: "user",
-      id: ""
+      username: "",
+      password: ""
+      //   userType: "user",
+      //   id: ""
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -27,8 +26,9 @@ class AddUserForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.state.id = users.length;
-    users.push(this.state);
+    axios
+      .post("http://localhost:3000/auth/register", this.state)
+      .then(res => console.log(res.data));
     this.props.history.push("/login");
   }
 
@@ -42,23 +42,23 @@ class AddUserForm extends React.Component {
       <div className="user-form">
         <form onSubmit={this.handleSubmit}>
           <h2>Create a new Account</h2>
-          <label>Name </label>
+          <label>Username </label>
           <input
             type="text"
-            placeholder="Name"
-            name="name"
-            value={this.state.name}
+            placeholder="Username"
+            name="username"
+            value={this.state.username}
             onChange={this.handleInput}
           />
           <br />
-          <label>Email </label>
+          {/* <label>Email </label>
           <input
             type="text"
             placeholder="Email"
             name="email"
             value={this.state.email}
             onChange={this.handleInput}
-          />
+          /> */}
           <br />
           <label>Password </label>
           <input
@@ -69,7 +69,7 @@ class AddUserForm extends React.Component {
             onChange={this.handleInput}
           />
           <br />
-          <label>User Type </label>
+          {/* <label>User Type </label>
           <select
             value={this.state.userType}
             onChange={this.handleInput}
@@ -78,7 +78,7 @@ class AddUserForm extends React.Component {
             <option value="user">User</option>
             <option value="driver">Driver</option>
           </select>
-          <br />
+          <br /> */}
           <button className="add-user-btn">Register</button>
         </form>
       </div>
