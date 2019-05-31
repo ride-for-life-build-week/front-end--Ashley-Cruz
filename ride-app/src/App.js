@@ -26,7 +26,10 @@ class App extends React.Component {
         <div className="App">
           <nav className="navigation-bar">
             <div className="nav-links">
-              <NavLink exact to="/">
+              <NavLink
+                exact
+                to="https://ride-for-life-landing-page.netlify.com/"
+              >
                 Home
               </NavLink>
               {this.props.isLoggedIn && <></>}
@@ -45,7 +48,11 @@ class App extends React.Component {
             </div>
           </nav>
 
-          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="https://ride-for-life-landing-page.netlify.com/"
+            component={Home}
+          />
           <Route path="/login" component={Login} />
           <Route path="/AddUserForm" component={AddUserForm} />
           <Route path="/DriverForm" component={DriverForm} />

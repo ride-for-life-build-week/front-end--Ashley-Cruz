@@ -3,13 +3,17 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
-import { getUser } from "../Actions";
+import { getUser, updatingUser, deleteUser } from "../Actions";
 import UserCard from "./UserCard";
 
 class UserPage extends React.Component {
   componentDidMount() {
     this.props.getUser();
   }
+
+  deleteUSer = (e, id) => {
+    this.props.deleteUser(id);
+  };
 
   render() {
     return (
@@ -19,7 +23,13 @@ class UserPage extends React.Component {
         ) : (
           <ul className="user-card-container">
             {this.props.user.map(user => {
-              return <UserCard key={user.id} user={user} />;
+              return (
+                <UserCard
+                  key={user.id}
+                  user={user}
+                  deleteUser={this.props.deleteUser}
+                />
+              );
             })}
           </ul>
         )}
@@ -36,6 +46,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getUser }
+    { getUser, deleteUSer }
   )(UserPage)
 );

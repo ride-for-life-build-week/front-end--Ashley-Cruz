@@ -4,9 +4,14 @@ import {
   LOGIN_FAILED,
   FETCH_USER_START,
   FETCH_USER_SUCCESSFUL,
-  FETCH_USER_FAILED,
   ADD_USER_START,
-  ADD_USER_SUCCESS
+  ADD_USER_SUCCESS,
+  DELETE_USER_SUCCESS,
+  UPDATE_USER_START,
+  DELETE_USER_START,
+  UPDATE_USER_SUCCESS,
+  DELETE_USER_FAILED,
+  UPDATE_USER_FAILED
 } from "../Actions";
 
 const initialState = {
@@ -15,6 +20,8 @@ const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
   addingUser: false,
+  deletingUser: false,
+  updatingUser: false,
   error: ""
 };
 
@@ -66,6 +73,51 @@ const reducer = (state = initialState, action) => {
       };
 
     case ADD_USER_SUCCESS:
+      return {
+        ...state,
+        addingUser: false,
+        user: action.payload
+      };
+
+    case DELETE_USER_START:
+      return {
+        ...state,
+        deletingUser: true,
+        user: ""
+      };
+
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        deletingUser: false,
+        user: "",
+        users: state.users.filter(user => {
+          return user.id !== action.payload;
+        })
+      };
+
+    case DELETE_USER_FAILED:
+      return {
+        ...state,
+        deletingUser: false,
+        user: ""
+      };
+
+    case UPDATE_USER_START:
+      return {
+        ...state,
+        updatingUser: false,
+        user: action.payload
+      };
+
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        updatingUser: false,
+        user: action.payload
+      };
+
+    case UPDATE_USER_FAILED:
       return {
         ...state,
         addingUser: false,
