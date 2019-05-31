@@ -26,12 +26,11 @@ class App extends React.Component {
         <div className="App">
           <nav className="navigation-bar">
             <div className="nav-links">
-              <NavLink
-                exact
-                to="https://ride-for-life-landing-page.netlify.com/"
-              >
-                Home
-              </NavLink>
+              <button>
+                <a href="https://ride-for-life-landing-page.netlify.com/">
+                  Home
+                </a>
+              </button>
               {this.props.isLoggedIn && <></>}
               <div>
                 <NavLink to="/AddUserForm">Register</NavLink>
