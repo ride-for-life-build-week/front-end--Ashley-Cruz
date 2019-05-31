@@ -6,11 +6,8 @@ import Loader from "react-loader-spinner";
 import { login } from "../Actions";
 import { users } from "../App.js";
 
-// function findUser(user, username) {
-//   return user === username;
-// }
-
 class Login extends React.Component {
+  // state = store.getState();
   state = {
     credentials: {
       username: "",
@@ -25,13 +22,12 @@ class Login extends React.Component {
         [e.target.name]: e.target.value
       }
     });
+    console.log(this.state);
   };
 
   handleClick = e => {
     e.preventDefault();
     this.props.login(this.state.credentials).then(() => {
-      // console.log(this.state.credentials.username);
-
       var username = this.state.credentials.username;
       var pw = this.state.credentials.password;
       var userAttemptingLogin = users.find(function(user) {
@@ -43,13 +39,12 @@ class Login extends React.Component {
         console.log("user found");
         if (pw === userAttemptingLogin.password) {
           console.log("password matches");
-          // this.props.user = userAttemptingLogin;
+          this.setState({ user: userAttemptingLogin });
           if (userAttemptingLogin.userType === "user")
             this.props.history.push("/UserForm");
           else this.props.history.push("/DriverForm");
         } else console.log("password does not match");
       }
-      // console.log(users);
     });
   };
 

@@ -62,7 +62,8 @@ function logout() {
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn
+  isLoggedIn: state.isLoggedIn,
+  user: state.user
 });
 
 export default connect(

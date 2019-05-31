@@ -26,18 +26,7 @@ class AddUserForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({
-      name: "",
-      email: "",
-      username: "",
-      password: "",
-      userType: "",
-      id: ""
-    });
-    //  console.log("A form was submitted: " + this.state);
-    // console.log(this.state);
     event.preventDefault();
-    console.log(users);
     this.state.id = users.length;
     users.push(this.state);
     this.props.history.push("/login");
