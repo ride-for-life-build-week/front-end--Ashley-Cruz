@@ -11,7 +11,7 @@ class UserPage extends React.Component {
     this.props.getUser();
   }
 
-  deleteUSer = (e, id) => {
+  deleteUser = id => {
     this.props.deleteUser(id);
   };
 
@@ -46,6 +46,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getUser, deleteUSer }
+    { getUser, deleteUser }
   )(UserPage)
 );
