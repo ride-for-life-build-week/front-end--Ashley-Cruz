@@ -5,8 +5,9 @@ import { addUser } from "../Actions";
 import { users } from "../App.js";
 
 class UserForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props);
     this.state = {
       name: "",
       email: "",
@@ -15,6 +16,8 @@ class UserForm extends React.Component {
       id: ""
     };
   }
+
+  //   state = {};
 
   handleInput = e => {
     console.log(this.state);
@@ -100,8 +103,16 @@ class UserForm extends React.Component {
             onChange={this.handleInput}
           /> */}
           <br />
-          <button className="add-user-btn">Save</button>
-          <button className="add-user-btn">Delete Account</button>
+          <button className="add-review-btn">Add Review</button>
+          <button className="edit-review-btn">Edit Review</button>
+          <br />
+          <button className="save-btn">Save Review</button>
+          <button className="delete-review-btn">Delete Review</button>
+          <br />
+          <button className="edit-btn">Edit Account</button>
+          <br />
+          <button className="save-acc-btn">Save Account</button>
+          <button className="delete-acc-btn">Delete Account</button>
         </form>
       </div>
     );
