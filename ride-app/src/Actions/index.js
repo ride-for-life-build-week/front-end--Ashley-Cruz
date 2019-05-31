@@ -55,3 +55,37 @@ export const addUser = signUp => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export const DELETE_USER_START = "DELETE_USER_START";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAILED = "DELETE_USER_FAILED";
+
+export const deleteUser = id => dispatch => {
+  dispatch({ type: DELETE_USER_START });
+  axios
+    .delete("http://", id)
+    .then(res => {
+      console.log("promise: ", id, res);
+      dispatch({ type: DELETE_USER_SUCCESS, payload: id });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const UPDATE_USER_START = "DELETE_USER_START";
+export const UPDATE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const UPDATE_USER_FAILED = "DELETE_USER_FAILED";
+
+export const updatingUser = id => dispatch => {
+  dispatch({ type: UPDATE_USER_START });
+  axios
+    .delete("http://", id)
+    .then(res => {
+      console.log("promise: ", id, res);
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: id });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
