@@ -8,7 +8,7 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("http://localhost:3000/auth/login", creds)
+    .post("http://localhost:3001/api/login", creds)
     .then(res => {
       localStorage.setItem(
         "token",
@@ -28,7 +28,7 @@ export const FETCH_USER_FAILED = "FETCH_USER_FAILED";
 export const getUser = () => dispatch => {
   dispatch({ type: FETCH_USER_START });
   axios
-    .get("http://localhost:3000/api/user", {
+    .get("http://localhost:3001/api/AddUserForm", {
       headers: {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export const ADD_USER_FAILED = "ADD_USER_FAILED";
 export const addUser = signUp => dispatch => {
   dispatch({ type: ADD_USER_START });
   return axios
-    .post("http://localhost:3000/api/signup", signUp)
+    .post("http://localhost:3001/AddUserForm", signUp)
     .then(res => {
       console.log(res);
       dispatch({ type: ADD_USER_SUCCESS, payload: res.data });

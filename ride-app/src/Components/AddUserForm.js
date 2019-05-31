@@ -26,7 +26,7 @@ class AddUserForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/auth/register", this.state)
+      .post("http://localhost:3001/AddUserForm", this.state)
       .then(res => console.log(res.data));
     this.props.history.push("/login");
   };

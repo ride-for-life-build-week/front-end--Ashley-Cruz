@@ -47,11 +47,11 @@ class App extends React.Component {
             </div>
           </nav>
 
-          <Route
+          {/* <Route
             exact
             path="https://ride-for-life-landing-page.netlify.com/"
             component={Home}
-          />
+          /> */}
           <Route path="/login" component={Login} />
           <Route path="/AddUserForm" component={AddUserForm} />
           <Route path="/DriverForm" component={DriverForm} />
