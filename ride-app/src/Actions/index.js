@@ -8,7 +8,7 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .post("http://localhost:3000/api/login", creds)
+    .post("http://localhost:3000/auth/login", creds)
     .then(res => {
       localStorage.setItem(
         "token",
