@@ -12,8 +12,12 @@ import Login from "./Components/Login";
 import Home from "./Components/HomePage";
 import UserPage from "./Components/UserPage";
 import AddUserForm from "./Components/AddUserForm";
+import DriverForm from "./Components/DriverForm";
 
 import "./App.css";
+import UserForm from "./Components/UserForm";
+
+export const users = [];
 
 class App extends React.Component {
   render() {
@@ -44,8 +48,8 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/AddUserForm" component={AddUserForm} />
-          <Route path="/user/form" component={AddUserForm} />
-          <Route path="/user" component={UserPage} />
+          <Route path="/DriverForm" component={DriverForm} />
+          <Route path="/UserForm" component={UserForm} />
         </div>
       </Router>
     );
