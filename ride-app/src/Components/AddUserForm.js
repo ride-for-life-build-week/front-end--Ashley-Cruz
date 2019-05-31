@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { addUser } from "../Actions";
+import { users } from "../App.js";
 
 class AddUserForm extends React.Component {
   constructor() {
@@ -9,32 +10,38 @@ class AddUserForm extends React.Component {
     this.state = {
       name: "",
       email: "",
-      username: "",
-      password: ""
+      password: "",
+      userType: "user",
+      id: ""
     };
+
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInput = e => {
+  handleInput(event) {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
-  };
+  }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    // if (
-    //   localStorage.token
-    //   //   this.state.name === "" ||
-    //   //   this.state.username === "" ||
-    //   //   this.state.email === "" ||
-    //   //   this.state.password === ""
-    // ) {
-    this.props.addUser(this.state).then(() => this.props.history.push("/"));
-    // } else {
-    // }
-
-    this.setState({ name: "", email: "", username: "", password: "" });
-  };
+  handleSubmit(event) {
+    this.setState({
+      name: "",
+      email: "",
+      username: "",
+      password: "",
+      userType: "",
+      id: ""
+    });
+    //  console.log("A form was submitted: " + this.state);
+    // console.log(this.state);
+    event.preventDefault();
+    console.log(users);
+    this.state.id = users.length;
+    users.push(this.state);
+    this.props.history.push("/login");
+  }
 
   cancelForm = e => {
     e.preventDefault();
@@ -44,39 +51,45 @@ class AddUserForm extends React.Component {
   render() {
     return (
       <div className="user-form">
-        <button link="/home" className="cancel-btn" onClick={this.cancelForm}>
-          X
-        </button>
         <form onSubmit={this.handleSubmit}>
           <h2>Create a new Account</h2>
+          <label>Name </label>
           <input
             type="text"
-            placeholder="name"
+            placeholder="Name"
             name="name"
             value={this.state.name}
             onChange={this.handleInput}
           />
+          <br />
+          <label>Email </label>
           <input
             type="text"
-            placeholder="username"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleInput}
-          />
-          <input
-            type="text"
-            placeholder="email"
+            placeholder="Email"
             name="email"
             value={this.state.email}
             onChange={this.handleInput}
           />
+          <br />
+          <label>Password </label>
           <input
-            type="text"
-            placeholder="password"
+            type="password"
+            placeholder="Password"
             name="password"
             value={this.state.password}
             onChange={this.handleInput}
           />
+          <br />
+          <label>User Type </label>
+          <select
+            value={this.state.userType}
+            onChange={this.handleInput}
+            name="userType"
+          >
+            <option value="user">User</option>
+            <option value="driver">Driver</option>
+          </select>
+          <br />
           <button className="add-user-btn">Register</button>
         </form>
       </div>
